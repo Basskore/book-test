@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Шибениця</h1>
+
+    <script>
+      let words = ['програма', 'свинособака', 'поц', 'чурбан', 'чучело'];
+
+      // вибираємо випадкове слово
+      let word = words[Math.floor(Math.random() * words.length)];
+
+      console.log(word);
+
+      let answerArray = [];
+      // створюємо ітоговий (підсумковий) масив
+      for (let i = 0; i < word.length; i++) {
+        answerArray[i] = '-';
+      }
+
+      console.log(answerArray);
+      // залишилось спроб
+      // let remainingAttempts = word.length; ;;
+
+      // Залишились літери
+      let remainingLetters = word.length;
+      // ігровий цикл буде повторюватись допоки remainingLetters > 0
+      while (remainingLetters > 0) {
+        // Показуємо стан гри
+        alert(answerArray.join(' '));
+        //Запитуємо варіант відповіді
+        let guess = prompt(
+          'Вгадайте букву, або натисніть "Відміна" для виходу з гри.',
+        );
+        if (guess === null) {
+          // Виходимо з ігрового циклу
+          break;
+        } else if (guess.length !== 1) {
+          alert('Будь ласка, введіть одну літеру.');
+        } else {
+          // якщо ввели правильну літеру обновляємо стан гри
+          for (var j = 0; j < word.length; j++) {
+            if (word[j] === guess.toLowerCase()) {
+              answerArray[j] = guess.toLowerCase();
+              remainingLetters--;
+            }
+          }
+        }
+      }
+      // Відображаємо відплвідь і вітаємо гравця
+      alert(answerArray.join(' '));
+      alert('Чудово! Було загадано слово ' + word);
+    </script>
+  </body>
+</html>
